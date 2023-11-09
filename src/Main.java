@@ -29,8 +29,14 @@ public class Main
             asteroids[x] = asteroid;
         }
 
-        while(play) {
+        Moon saturnRing = new Moon(20, 0 ,5 , "GRAY", theSaturn.getDistance(), theSaturn.getAngle());
+        Moon[] rings = new Moon[20];
+        for (int x = 0; x < 20; x++) {
+            rings[x] = saturnRing;
+        }
 
+
+        while(play) {
 
             for (int x = 0; x < 8; x++) {
                 if (SolarObjects[x] instanceof Planet) {
@@ -48,8 +54,18 @@ public class Main
 
             for (int x = 0; x < 300; x++) {
                 mySystem.drawSolarObject(asteroid.getDistance(), asteroid.getAngle(), asteroid.getDiameter(), asteroid.getColor());
-                asteroids[x].setAngle(asteroids[x].getAngle() + 1 % 360);
+                asteroids[x].setAngle((asteroids[x].getAngle() + 1) % 360);
             }
+
+            for (int x = 0; x < 20; x++) {
+                Moon ring = rings[x];
+                mySystem.drawSolarObjectAbout(ring.getDistance(), ring.getAngle(), ring.getDiameter(), ring.getColor(), ring.getRotationDistance(), ring.getRotationAngle());
+                rings[x].setAngle((rings[x].getAngle() + 1) % 360);
+                rings[x].setRotationAngle((theSaturn.getAngle() + 1) % 360 );
+
+            }
+
+            System.out.println(theSaturn.getAngle() + ", " + rings[5].getRotationAngle());
 
             mySystem.finishedDrawing();
         }
