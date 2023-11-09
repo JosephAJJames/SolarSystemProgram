@@ -23,18 +23,13 @@ public class Main
         Planet theUranus = new Planet(500, anusAngle, 27, "CYAN");
         Planet theNeptune = new Planet(550, nepAngle, 20, "BLUE");
         CelestialBody[] SolarObjects = {sun, theEarth, theMars, theJupiter, theSaturn, theUranus, theNeptune, theMoon};
+        Planet[] asteroids = new Planet[300];
+        Planet asteroid = new Planet(300, 0,5, "GRAY");
+        for (int x = 0; x < 300; x++) {
+            asteroids[x] = asteroid;
+        }
 
         while(play) {
-            /*
-            theEarth.setAngle(earthAngle);
-            theMoon.setAngle(moonAngle);
-            theMoon.setRotationAngle(earthAngle);
-            theMars.setAngle(marsAngle);
-            theJupiter.setAngle(jupiterAngle);
-            theSaturn.setAngle(saturnAngle);
-            theUranus.setAngle(anusAngle);
-            theNeptune.setAngle(nepAngle);
-            */
 
 
             for (int x = 0; x < 8; x++) {
@@ -51,20 +46,12 @@ public class Main
                 }
             }
 
-            mySystem.finishedDrawing();
+            for (int x = 0; x < 300; x++) {
+                mySystem.drawSolarObject(asteroid.getDistance(), asteroid.getAngle(), asteroid.getDiameter(), asteroid.getColor());
+                asteroids[x].setAngle(asteroids[x].getAngle() + 1 % 360);
+            }
 
-            /*
-            mySystem.drawSolarObject((double) sun.getDistance(), (double) sun.getAngle(), (double) sun.getDiameter(), sun.getColor());
-            mySystem.drawSolarObject((double) theEarth.getDistance(), (double) theEarth.getAngle(), (double) theEarth.getDiameter(), theEarth.getColor());
-            mySystem.drawSolarObjectAbout(theMoon.getDistance(), theMoon.getAngle(), theMoon.getDiameter(), theMoon.getColor(), theEarth.getDistance(),theMoon.getRotationAngle());
-            mySystem.drawSolarObject(theMars.getDistance(), theMars.getAngle(), theMars.getDiameter(), theMars.getColor());
-            mySystem.drawSolarObject(theJupiter.getDistance(), theJupiter.getAngle(), theJupiter.getDiameter(), theJupiter.getColor());
-            mySystem.drawSolarObject(theSaturn.getDistance(), theSaturn.getAngle(), theSaturn.getDiameter(), theSaturn.getColor());
-            mySystem.drawSolarObject(theUranus.getDistance(), theUranus.getAngle(), theUranus.getDiameter(), theUranus.getColor());
-            mySystem.drawSolarObject(theNeptune.getDistance(), theNeptune.getAngle(), theUranus.getDiameter(), theUranus.getColor());
             mySystem.finishedDrawing();
-            */
-
         }
     }
 }
