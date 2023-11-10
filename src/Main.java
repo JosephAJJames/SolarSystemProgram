@@ -1,9 +1,16 @@
 package src;
 
 public class Main
+        /**
+         * Driver class
+         * @author Joseph James
+         */
 {
     public static void main(String[] args)
     {
+        /**
+        * Initial angles for planets
+         **/
         boolean play = true;
         int earthAngle = 0;
         int moonAngle = 90;
@@ -13,6 +20,10 @@ public class Main
         int anusAngle = 300;
         int nepAngle = 350;
 
+
+        /**
+        *Planets
+         **/
         SolarSystem mySystem = new SolarSystem(1000, 1000);
         Planet sun = new Planet(0, 0, 150, "YELLOW");
         Planet theEarth = new Planet(300, earthAngle, 25, "BLUE");
@@ -25,10 +36,17 @@ public class Main
         CelestialBody[] SolarObjects = {sun, theEarth, theMars, theJupiter, theSaturn, theUranus, theNeptune, theMoon};
         Planet[] asteroids = new Planet[300];
         Planet asteroid = new Planet(300, 0,5, "GRAY");
+
+        /**
+         *Drawing asteroid belt
+         **/
         for (int x = 0; x < 300; x++) {
             asteroids[x] = asteroid;
         }
 
+        /**
+        * populating saturns rings array
+         **/
         Moon saturnRing = new Moon(20, 0 ,5 , "GRAY", theSaturn.getDistance(), theSaturn.getAngle());
         Moon[] rings = new Moon[20];
         for (int x = 0; x < 20; x++) {
@@ -38,6 +56,9 @@ public class Main
 
         while(play) {
 
+            /**
+            * Drawing the planets
+             */
             for (int x = 0; x < 8; x++) {
                 if (SolarObjects[x] instanceof Planet) {
                     mySystem.drawSolarObject(SolarObjects[x].getDistance(), SolarObjects[x].getAngle(), SolarObjects[x].getDiameter(), SolarObjects[x].getColor());
@@ -52,10 +73,18 @@ public class Main
                 }
             }
 
+            /**
+            * Drawing Astroid belt
+             **/
+
             for (int x = 0; x < 300; x++) {
                 mySystem.drawSolarObject(asteroid.getDistance(), asteroid.getAngle(), asteroid.getDiameter(), asteroid.getColor());
                 asteroids[x].setAngle((asteroids[x].getAngle() + 1) % 360);
             }
+
+            /**
+            * Drawing saturns rings
+             **/
 
             for (int x = 0; x < 20; x++) {
                 Moon ring = rings[x];
@@ -64,8 +93,6 @@ public class Main
                 rings[x].setRotationAngle((theSaturn.getAngle() + 1) % 360 );
 
             }
-
-            System.out.println(theSaturn.getAngle() + ", " + rings[5].getRotationAngle());
 
             mySystem.finishedDrawing();
         }
